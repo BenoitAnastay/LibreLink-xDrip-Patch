@@ -10,6 +10,14 @@ YELLOW='\033[1;33m'
 WORKDIR=$(pwd)
 FILENAME='com.freestylelibre.app.de_2019-04-22'
 
+if [ ! -x tools/apktool ]; then
+  /bin/bash download.sh
+fi
+
+if [ ! -e APK/${FILENAME}.apk ]; then
+  echo -e "${YELLOW} À cause des CAPCHAT, vous devez manuellement télécharger le fichier APK depuis https://apkpure.com/de/freestyle-librelink-de/com.freestylelibre.app.de/download/4751-APK, puis le placer dans le dossier APK"
+fi
+
 echo -e "${WHITE}Vérification des dépendances ...${NORMAL}"
 MISSINGTOOL=0
 echo -en "${WHITE}  apksigner ... ${NORMAL}"
@@ -71,7 +79,7 @@ if [ -e APK/${FILENAME}.apk ]; then
 else
   echo -e "${RED}  non trouvé.${NORMAL}"
   echo
-  echo -e "${YELLOW}=> Veuillez télécharger le fichier APK original depuis https://www.apkmonk.com/download-app/com.freestylelibre.app.de/5_com.freestylelibre.app.de_2019-04-22.apk/ et le placer dans le dossier APK/ (sh download.sh).${NORMAL}"
+  echo -e "${YELLOW}=> Veuillez télécharger le fichier APK original depuis https://apkpure.com/de/freestyle-librelink-de/com.freestylelibre.app.de/download/4751-APK et le placer dans le dossier APK/.${NORMAL}"
   exit 1
 fi
 
